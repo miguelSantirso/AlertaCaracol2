@@ -40,7 +40,7 @@ protected:
 
 	std::vector<Body *> Cuerpos;	// Cuerpos físicos que interactuarán con el agua
 
-	int t;
+	long t;
 
 	float Amplitud;
 	float Densidad;

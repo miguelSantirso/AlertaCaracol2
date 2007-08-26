@@ -779,7 +779,7 @@ void Render()
     }
 
 	Body *P_N = Puntero_Nave->Puntero_Box;
-	if(key[Teclas["down"] >> 8])
+	if(key[Teclas["down"] >> 8] && Agua_Restante > 0)
 	{
 		Alfa_Propuls = 255;
 		set_trans_blender(0, 0, 0, Alfa_Propuls);
@@ -1063,7 +1063,6 @@ void Keyboard()
 	if (kp == KEY_ESC && !Bienvenida) {Bienvenida = true; Muerto = false; Pausa = false; Inicializar(9); }
 	if (kp == KEY_TAB) Debug = !Debug;
 	if (kp == KEY_P) Pausa = !Pausa;
-//	if (kp == KEY_C && Bienvenida) Bienvenida = false;
 	if (kp == KEY_R) { Inicializar(9); Muerto = false; Pausa = false; Bienvenida = false; }
 	if (kp == KEY_SPACE) Puntero_Agua->Modifica_Amplitud(50);
 }
