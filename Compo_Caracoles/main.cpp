@@ -1060,7 +1060,7 @@ void Keyboard()
 	// Lecturas de teclas con bloqueo
     int kp = readkey() >> 8;
 
-	if (kp == KEY_ESC) {Bienvenida = true; Muerto = false; Pausa = false; Inicializar(9); }
+	if (kp == KEY_ESC/* && !Bienvenida*/) {Bienvenida = true; Muerto = false; Pausa = false; Inicializar(9); }
 	if (kp == KEY_TAB) Debug = !Debug;
 	if (kp == KEY_P) Pausa = !Pausa;
 //	if (kp == KEY_C && Bienvenida) Bienvenida = false;

@@ -37,6 +37,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
+				PreprocessorDefinitions="ENGLISH"
 				RuntimeLibrary="3"
 				ObjectFile="$(IntDir)\"
 				DebugInformationFormat="4"
