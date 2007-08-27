@@ -842,10 +842,10 @@ void Render()
 	{
 		Resetear_Vector_Disparos();
 	}
-	if(Caracoles.size()>200)
+/*	if(Caracoles.size()>200)
 	{
 		Resetear_Vector_Caracoles();
-	}
+	}*/
 	if(Sprites_Efectos.size()>100)
 	{
 		Resetear_Vector_Efectos();
