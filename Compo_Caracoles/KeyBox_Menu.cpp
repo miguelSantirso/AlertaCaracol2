@@ -78,6 +78,7 @@ void KeyBox_Menu::Borrar()
 std::string KeyBox_Menu::KeyId_To_String(int key)
 {
 	std::string String;
+#ifdef SPANISH
 	switch(key)
 	{
 	case -1:
@@ -99,7 +100,30 @@ std::string KeyBox_Menu::KeyId_To_String(int key)
 		String = key;
 		break;
 	}
-
+#endif
+#ifdef ENGLISH
+	switch(key)
+	{
+	case -1:
+		String = "-";
+		break;
+	case 21504:
+		String = "'up'";
+		break;
+	case 21760:
+		String = "'down'";
+		break;
+	case 20992:
+		String = "'left'";
+		break;
+	case 21248:
+		String = "'right'";
+		break;
+	default:
+		String = key;
+		break;
+	}
+#endif
 	return String;
 }
 

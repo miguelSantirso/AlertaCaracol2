@@ -60,8 +60,8 @@ void Menu::Inicializa_Menu(int Menu)
 		Botones[3] = Boton_Menu(320, 440, 200, 38, "exit", "Salir", this);
 #endif
 #ifdef ENGLISH
-		Botones[0] = Boton_Menu(320, 187, 200, 38, "start", "Start the game", this);
-		Botones[1] = Boton_Menu(320, 270, 200, 38, "controles", "Keyboard", this);
+		Botones[0] = Boton_Menu(320, 187, 200, 38, "start", "Start game", this);
+		Botones[1] = Boton_Menu(320, 270, 200, 38, "controles", "Controls", this);
 		Botones[2] = Boton_Menu(320, 350, 200, 38, "opciones", "Help", this);
 		Botones[3] = Boton_Menu(320, 440, 200, 38, "exit", "Exit", this);
 #endif
@@ -88,12 +88,12 @@ void Menu::Inicializa_Menu(int Menu)
 		Numero_Textos = 2;
 		Textos = new Texto_Menu[Numero_Textos];
 #ifdef SPANISH
-		Textos[0] = Texto_Menu(320, 220, 565, Texto_Menu::COMPLEJO, "explain", "INSTRUCCIONES:\n\n- Tu objetivo consiste en evitar que los caracoles lleguen hasta lo\n  alto de las columnas.\n- Cuando un caracol llegue a lo mas alto de la columna, se inmolara\n  y hara que la columna baje.\n- ¡Intenta conseguir la mayor puntuacion posible!");
-		Textos[1] = Texto_Menu(320, 340, 565, Texto_Menu::COMPLEJO, "explain", "CONTROLES:\n   - Izquierda/Derecha: Disparar e impulsar la nave hacia los lados\n   - Abajo: Impulsar la nave hacia arriba\n   - Arriba: Descender mas rapido\n   - ESC: Salir\n   - P: Pausa\n   - R: Reiniciar Partida");
+		Textos[0] = Texto_Menu(320, 220, 565, Texto_Menu::COMPLEJO, "explain", "INSTRUCCIONES:\n\n- Controlas una nave que puedes manejar disparando agua a presion en\n tres direcciones diferentes (izquierda, abajo y derecha).\n- Tu objetivo es disparar a los caracoles que suben por las columnas\n para que caigan al agua.\n- Si un caracol llega a lo alto de una columna, esta bajara un poco.");
+		Textos[1] = Texto_Menu(320, 340, 565, Texto_Menu::COMPLEJO, "explain", "CONTROLES:\n(los controles se pueden cambiar en la opcion 'controles' del menu)\n- Izquierda/Derecha: Disparar e impulsar la nave hacia los lados\n- Abajo/Arriba: Impulsar la nave hacia arriba/Descender mas rapido\n- ESC: Salir\n- P: Pausa\n- R: Reiniciar Partida");
 #endif
-		Textos[0] = Texto_Menu(320, 220, 565, Texto_Menu::COMPLEJO, "explain", "INSTRUCTIONS:\n\n- Tu objetivo consiste en evitar que los caracoles lleguen hasta lo\n  alto de las columnas.\n- Cuando un caracol llegue a lo mas alto de la columna, se inmolara\n  y hara que la columna baje.\n- ¡Intenta conseguir la mayor puntuacion posible!");
-		Textos[1] = Texto_Menu(320, 340, 565, Texto_Menu::COMPLEJO, "explain", "CONTROLES:\n   - Izquierda/Derecha: Disparar e impulsar la nave hacia los lados\n   - Abajo: Impulsar la nave hacia arriba\n   - Arriba: Descender mas rapido\n   - ESC: Salir\n   - P: Pausa\n   - R: Reiniciar Partida");
 #ifdef ENGLISH
+		Textos[0] = Texto_Menu(320, 210, 565, Texto_Menu::COMPLEJO, "explain", "INSTRUCTIONS:\n\n- You control a small ship which can be moved by shooting pressured\n water in three different directions (left, down and right).\n- Your objective is to shoot the snails that climb to the top of the\n columns so that they fall to the water.\n- If a snail gets to the top of a column, he will explode itself and\n the column will fall.");
+		Textos[1] = Texto_Menu(320, 350, 565, Texto_Menu::COMPLEJO, "explain", "CONTROLS:\n(this controls can be personalized in 'controls', in the main menu)\n- 'left'/'right': Shoot and move the ship horizontally.\n- 'down'/'up': Move the ship up/Go down faster\n- ESC: Exit\n- P: Pause\n- R: Restart Game");
 #endif
 		Numero_Imagenes = 1;
 		Imagenes = new Imagen_Menu *[Numero_Imagenes];
@@ -108,7 +108,12 @@ void Menu::Inicializa_Menu(int Menu)
 	{
 		Numero_Botones = 1;
 		Botones = new Boton_Menu[Numero_Botones];
+#ifdef SPANISH
 		Botones[0] = Boton_Menu(320, 440, 200, 38, "volver", "Aceptar", this);
+#endif
+#ifdef ENGLISH
+		Botones[0] = Boton_Menu(320, 440, 200, 38, "volver", "Ok", this);
+#endif
 
 		Numero_Imagenes = 1;
 		Imagenes = new Imagen_Menu *[Numero_Imagenes];

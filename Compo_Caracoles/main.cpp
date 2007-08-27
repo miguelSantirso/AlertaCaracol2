@@ -907,10 +907,10 @@ void Render()
 	Aux+=Cadena_Numero;
 	DrawText(swap_screen, 450, 440, (char *)Aux.c_str());
 #ifdef SPANISH
-	Aux="Cantidad Agua: ";
+	Aux="Deposito de Agua: ";
 #endif
 #ifdef ENGLISH
-	Aux="Amount of water: ";
+	Aux="Water Tank: ";
 #endif
 	float Agua=float(Agua_Restante)/NIVEL_MAXIMO_AGUA;
 	_itoa_s(100*Agua, Cadena_Numero, 10);
