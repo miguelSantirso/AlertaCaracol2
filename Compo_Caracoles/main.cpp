@@ -1002,12 +1002,10 @@ void Render()
 		Aux+=Cadena_Numero;
 		DrawText(swap_screen, 200, 200, (char *)Aux.c_str());
 #ifdef SPANISH
-	DrawText(swap_screen, 5, 5, "Pulsa 'R' para reiniciar la partida.");
-	Aux="Puntuacion: ";
+		DrawText(swap_screen, 280, 180, "Pulsa 'R' para reiniciar la partida.");
 #endif
 #ifdef ENGLISH
-	DrawText(swap_screen, 5, 5, "Press 'R' to restart the game.");
-	Aux="Score: ";
+		DrawText(swap_screen, 280, 180, "Press 'R' to restart the game.");
 #endif
 	}
 
@@ -1022,6 +1020,26 @@ void Render()
     release_screen();	// La dejamos libre de nuevo
 }
 
+// En caso de que una columna se quede por encima del resto, iguala su altura a la siguiente en altura.
+void Arregla_Altura_Columnas()
+{
+	int Mayor_Altura_1, Mayor_Altura_2;
+	Mayor_Altura_1 = Mayor_Altura_2 = 1000;
+	int Columna_Mas_Alta;
+
+	for(int i=0; i<Columnas.size(); i++)
+	{
+		if(Columnas[i]->Puntero_Box->position.y <= Mayor_Altura_1)
+		{
+			Columna_Mas_Alta = i;
+			Mayor_Altura_2 = Mayor_Altura_1;
+			Mayor_Altura_1 = Columnas[i]->Puntero_Box->position.y;
+		}
+	}
+	if(Mayor_Altura_1 != Mayor_Altura_2)
+		Columnas[Columna_Mas_Alta]->Puntero_Box->position.y+=40;
+}
+
 // Reduce la altura de la columna indicada
 void Baja_Columna(int Columna)
 {
@@ -1033,6 +1051,7 @@ void Baja_Columna(int Columna)
 
 // <revisar> La cantidad que baja la columna debería ir en función de la resolución </revisar>
 	Columnas[Columna]->Puntero_Box->position.y+=40;
+	Arregla_Altura_Columnas();
 }
 
 // Controla el teclado
