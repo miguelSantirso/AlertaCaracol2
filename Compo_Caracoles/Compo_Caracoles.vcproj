@@ -37,6 +37,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
+				AdditionalIncludeDirectories="&quot;C:\Archivos de programa\Librerías Allegro\allegro42_msvc8_bin\include&quot;;&quot;C:\Archivos de programa\Microsoft Platform SDK\Include&quot;"
 				PreprocessorDefinitions="ENGLISH"
 				RuntimeLibrary="3"
 				ObjectFile="$(IntDir)\"
@@ -54,6 +55,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="alld.lib"
+				AdditionalLibraryDirectories="&quot;C:\Archivos de programa\Librerías Allegro\allegro42_msvc8_bin\lib&quot;;&quot;C:\Archivos de programa\Microsoft Platform SDK\Lib&quot;"
 				GenerateDebugInformation="true"
 			/>
 			<Tool
@@ -167,6 +169,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions="-DGLYPH_TARGET=GLYPH_TARGET_ALLEGRO"
 				Optimization="0"
+				AdditionalIncludeDirectories="&quot;C:\Archivos de programa\Microsoft Platform SDK\Include&quot;;&quot;C:\Archivos de programa\Librerías Allegro\allegro42_msvc8_bin\include&quot;"
 				PreprocessorDefinitions="ALLEGRO_STATICLINK, SPANISH"
 				RuntimeLibrary="0"
 				ObjectFile="$(IntDir)\"
@@ -185,7 +188,7 @@
 				Name="VCLinkerTool"
 				AdditionalOptions="/LTCG"
 				AdditionalDependencies="alleg_s_crt.lib kernel32.lib user32.lib gdi32.lib comdlg32.lib ole32.lib dinput.lib ddraw.lib dxguid.lib winmm.lib dsound.lib"
-				AdditionalLibraryDirectories="&quot;C:\Archivos de programa\Microsoft DirectX SDK (August 2007)\Lib\x86&quot;;C:\Windows\system32;&quot;C:\Archivos de programa\Microsoft Platform SDK\Lib&quot;"
+				AdditionalLibraryDirectories="&quot;C:\Archivos de programa\Librerías Allegro\allegro42_msvc8_bin\lib&quot;;C:\Windows\system32;&quot;C:\Archivos de programa\Microsoft Platform SDK\Lib&quot;;&quot;C:\Archivos de programa\Microsoft DirectX SDK (August 2007)\Lib\x86&quot;"
 				GenerateDebugInformation="true"
 			/>
 			<Tool

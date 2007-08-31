@@ -92,8 +92,8 @@ void Menu::Inicializa_Menu(int Menu)
 		Textos[1] = Texto_Menu(320, 340, 565, Texto_Menu::COMPLEJO, "explain", "CONTROLES:\n(los controles se pueden cambiar en la opcion 'controles' del menu)\n- Izquierda/Derecha: Disparar e impulsar la nave hacia los lados\n- Abajo/Arriba: Impulsar la nave hacia arriba/Descender mas rapido\n- ESC: Salir\n- P: Pausa\n- R: Reiniciar Partida");
 #endif
 #ifdef ENGLISH
-		Textos[0] = Texto_Menu(320, 210, 565, Texto_Menu::COMPLEJO, "explain", "INSTRUCTIONS:\n\n- You control a small ship which can be moved by shooting pressured\n water in three different directions (left, down and right).\n- Your objective is to shoot the snails that climb to the top of the\n columns so that they fall to the water.\n- If a snail gets to the top of a column, he will explode itself and\n the column will fall.");
-		Textos[1] = Texto_Menu(320, 350, 565, Texto_Menu::COMPLEJO, "explain", "CONTROLS:\n(this controls can be personalized in 'controls', in the main menu)\n- 'left'/'right': Shoot and move the ship horizontally.\n- 'down'/'up': Move the ship up/Go down faster\n- ESC: Exit\n- P: Pause\n- R: Restart Game");
+		Textos[0] = Texto_Menu(320, 210, 565, Texto_Menu::COMPLEJO, "explain", "INSTRUCTIONS:\n\n- You control a small ship which can be moved by shooting pressured\n water in three different directions (left, down and right).\n- Your objective is to shoot the snails that climb to the top of the\n columns so that they fall to the water.\n- If a snail gets to the top of the column, it will explode and the\n column will fall one level.");
+		Textos[1] = Texto_Menu(320, 350, 565, Texto_Menu::COMPLEJO, "explain", "DEFAULT CONTROLS:\n(these controls can be changed selecting 'controls' from the main menu)\n- 'left'/'right': Shoot and move the ship horizontally.\n- 'down'/'up': Move the ship up/Go down faster\n- ESC: Exit\n- P: Pause\n- R: Restart Game");
 #endif
 		Numero_Imagenes = 1;
 		Imagenes = new Imagen_Menu *[Numero_Imagenes];
