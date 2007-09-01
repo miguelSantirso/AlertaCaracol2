@@ -11,6 +11,7 @@ using namespace std;
 // Obtener variables globales
 extern World world;
 extern vector<Body *> bodies;
+extern void Aborta_Con_Error(string msg);
 
 // Constructor por defecto (no se usa)
 Objeto_Fisico::Objeto_Fisico(void): Puntero_Box(NULL), Grafico_Objeto(NULL)
@@ -46,7 +47,7 @@ void Objeto_Fisico::Inicializa(string Ruta_Fichero, float Peso, int Ancho, int A
 	// <revisar> Controlar mejor error en la carga del fichero </revisar>
 
 	if(!Grafico_Objeto)
-		printf("error");
+		Aborta_Con_Error("ERROR:\nError de ejecucion en la funcion Inicializa() de Objeto_Fisico.cpp.\n - Error al cargar el grafico " + Ruta_Fichero);
 
 	// Si no se ha indicado nada, la caja de colisiones tomará el mismo tamaño que el gráfico
 	if(Ancho==0)

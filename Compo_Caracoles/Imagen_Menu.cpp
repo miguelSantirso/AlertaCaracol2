@@ -6,6 +6,8 @@
 
 using namespace std;
 
+extern void Aborta_Con_Error(string msg);
+
 Imagen_Menu::Imagen_Menu(void) : Grafico(NULL)
 {
 }
@@ -17,10 +19,8 @@ Imagen_Menu::Imagen_Menu(int _x, int _y, std::string _Nombre, std::string _Ruta)
 	// Cargamos en memoria el gráfico indicado
 	Grafico=load_bitmap((char *)_Ruta.c_str(), palette);
 
-	// <revisar> Controlar mejor error en la carga del fichero </revisar>
-
 	if(!Grafico)
-		printf("error");
+		Aborta_Con_Error("ERROR:\nError de ejecucion en la funcion Imagen_Menu() de Imagen_Menu.cpp.\n - Error al cargar el grafico " + _Ruta);
 
 	x -= Grafico->w/2;
 	y -= Grafico->h/2;

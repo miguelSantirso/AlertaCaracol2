@@ -175,24 +175,11 @@ void DrawJoint(BITMAP *p_bmp, Joint* joint, int px, int py)
 	line(p_bmp, px + (int)p2.x, py + (int)p2.y, px + (int)x1.x, py + (int)x1.y, color);
 }
 
-void LaunchBomb()
+void Aborta_Con_Error(string Error)
 {
-    if (bomb != NULL) {
-        delete bomb;
-        bomb = new Body();
-    }
-    else {
-        bomb = new Body();
-        bodies.push_back(bomb);
-        world.Add(bomb);
-    }
-
-    bomb->Set(Vec2(10, 10), 250);
-	bomb->position.Set(320 + Random(-250.0f, 250.0f), 15.0f);
-	bomb->rotation = Random(-1.5f, 1.5f);
-	bomb->friction = 0.2;
-	bomb->velocity = Vec2((320 - bomb->position.x)/4, 50);
-	bomb->angularVelocity = Random(-2.0f, 2.0f);
+	set_gfx_mode(GFX_TEXT , 0 , 0 , 0 , 0);
+	allegro_message((const char *) Error.c_str());
+	exit(-1);
 }
 
 void Lee_Configuracion_Teclado()
@@ -247,7 +234,7 @@ void Lee_Configuracion_Teclado()
 
 		if(!new_f.is_open())
 		{
-			printf("error");
+			Aborta_Con_Error("ERROR:\nError de ejecucion en la funcion Lee_Configuracion_Teclado() de main.cpp.\n - Error al cargar el fichero de configuracion de teclado.");
 			return;
 		}
 
@@ -559,8 +546,6 @@ void Simulate()
 
 	// LÓGICA DE LAS COLUMNAS
 
-// <revisar> El valor inicial de Altura_Maxima podría fallar al cambiar la resolución </revisar>
-
 	int Altura_Maxima=1000;	// Altura de la columna más alta; 
 							// se utilizará para calcular la altura del techo.
 
@@ -576,8 +561,6 @@ void Simulate()
 		Columna_Izquierda->Puntero_Box->position.y=Altura_Maxima;
 		Columna_Derecha->Puntero_Box->position.y=Altura_Maxima;
 	}
-
-// <revisar> El valor inicial de Altura_Maxima podría fallar al cambiar la resolución </revisar>
 
 	// Comprobamos si el jugador ha muerto en función de la posición del techo
 	if(Altura_Maxima > 600)
@@ -1044,12 +1027,10 @@ void Arregla_Altura_Columnas()
 void Baja_Columna(int Columna)
 {
 	if(Columna>Columnas.size())	// Si la columna indicada no es correcta
-		// <revisar> Error, columnas no válido </revisar>
-		return;
+		Aborta_Con_Error("ERROR:\nError de ejecución en la función Baja_Columna(int) de main.cpp.\n - La columna indicada está fuera de rango");
 
 	// Bajamos la altura de la columna
 
-// <revisar> La cantidad que baja la columna debería ir en función de la resolución </revisar>
 	Columnas[Columna]->Puntero_Box->position.y+=40;
 	Arregla_Altura_Columnas();
 }

@@ -1,10 +1,12 @@
 #include <fstream>
-#include <sstream>
+#include <string>
 
 #include "KeyConfig_Menu.h"
 #include "KeyBox_Menu.h"
 
 using namespace std;
+
+extern void Aborta_Con_Error(string msg);
 
 KeyConfig_Menu::KeyConfig_Menu(int _x, int _y, int _Ancho, int _Alto, Menu *_Puntero_Menu) : x(_x),
 		y(_y), Ancho(_Ancho), Alto(_Alto), Puntero_Menu(Puntero_Menu), KeyBoxes(NULL)
@@ -62,7 +64,7 @@ void KeyConfig_Menu::Lee_Configuracion()
 		Config_Teclas.push_back(Tecla);
 
 		Escribe_Configuracion();*/
-		printf("error");
+		Aborta_Con_Error("ERROR:\nError de ejecucion en la funcion Lee_Configuracion() de KeyConfig_Menu.cpp.\n - Error al cargar el fichero de configuracion de teclado.");
 		return;
 	}
 
@@ -85,7 +87,7 @@ void KeyConfig_Menu::Escribe_Configuracion()
 
 	if(!Fichero.is_open())
 	{
-		printf("error");
+		Aborta_Con_Error("ERROR:\nError de ejecucion en la funcion Escribe_Configuracion() de KeyConfig_Menu.cpp.\n - Error al escribir en el fichero de configuracion de teclado.");
 		return;
 	}
 

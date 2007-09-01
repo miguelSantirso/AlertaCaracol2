@@ -40,8 +40,6 @@ Objeto_Caracol::Objeto_Caracol(void) : Destruir(false)
 
 	Parte_Derecha=rand()%2;	// Sortear el lado de la columna en que aparecerá
 
-	// <revisar> Esto no es independiente del número de columnas </revisar>
-
 	// Las columnas de los extremos solo tienen una parte válida
 	if(Columna==4) Parte_Derecha = false;
 	if(Columna==3) Parte_Derecha = true;
