@@ -104,7 +104,7 @@ void Objeto_Nave::Disparo_Lateral(bool Derecha)
 	if(Agua_Restante > 1)
 	{
 		// Creamos una fuerza lateral
-		Puntero_Box->AddForce((Derecha ? -1 : 1)*400.0 * Vec2(1, 0));
+		Puntero_Box->AddForce((Derecha ? -1 : 1)*300.0 * Vec2(1, 0));
 
 		// Hace que los disparos salgan algo separados
 		if(Dosificador_Disparo>0)
