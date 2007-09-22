@@ -17,11 +17,11 @@
 #define ANCHO_BARRA_AGUA int(15)
 #define ALTO_BARRA_AGUA int(40)
 
+#include <allegro.h>
 #include <string>
 #include <vector>
 #include <map>
 #include <fstream>
-#include <allegro.h>
 
 #include "World.h"
 #include "Body.h"
@@ -65,7 +65,8 @@ bool Salir = false;			// Indica que se debe salir del juego
 bool Debug = false;			// Indica si se está en modo debug (se dibujan los bodies y los joints)
 
 // ESTADO DE LA PARTIDA
-int Puntuacion=0;						// Puntuación del jugador
+int Puntuacion=0;	// Puntuación del jugador
+int HiScore;
 int Agua_Restante = NIVEL_MAXIMO_AGUA;	// Agua restante (0 - NIVEL_MAXIMO_AGUA)
 int Nivel = 0;							// Nivel en que se encuentra el jugador
 
@@ -259,6 +260,34 @@ void Lee_Configuracion_Teclado()
 	Fichero.close();
 }
 
+void Gestiona_HiScore()
+{
+	fstream Fichero;
+	Fichero.open("HiScores.sna");
+
+	if(!Fichero.is_open())
+	{
+		ofstream Aux;
+		Aux.open("HiScores.sna");
+		
+		Aux.write((char *)(&Puntuacion), sizeof(Puntuacion));
+		HiScore = Puntuacion;
+
+		Aux.close();
+		return;
+	}
+	int HiScore_Guardado;
+	Fichero.read((char *)(&HiScore_Guardado), sizeof(HiScore_Guardado));
+
+	if(Puntuacion <= HiScore_Guardado)
+	{
+		HiScore = HiScore_Guardado;
+		return;
+	}
+	Fichero.seekg (0, ios::beg);
+	Fichero.write((char *)(&Puntuacion), sizeof(Puntuacion));
+	HiScore = Puntuacion;
+}
 
 // Cargador de la partida
 void Iniciar_Partida()
@@ -267,7 +296,8 @@ void Iniciar_Partida()
 	PALETTE paleta;
 	Body * b;
 
-	// Inicializr el estado de la partida
+	// Inicializar el estado de la partida
+	Gestiona_HiScore();
 	Puntuacion = 0;
 	Agua_Restante = NIVEL_MAXIMO_AGUA;
 	Nivel = 1;
@@ -280,12 +310,6 @@ void Iniciar_Partida()
 
 	Alfa_Propuls = 255;
 
-    // Carga y creación del suelo
-/*	Objeto_Fisico *Suelo = new Objeto_Fisico("graficos\\agua.pcx", FLT_MAX);
-	Suelo->Puntero_Box->Set(Vec2(640, 40), FLT_MAX);
-	Suelo->Puntero_Box->position.Set(320, 460);
-	Objetos_Fisicos.push_back(Suelo);*/
-   
    // Carga y creación del techo
 	Objeto_Fisico *Techo = new Objeto_Fisico("graficos\\techo.pcx", FLT_MAX);
 	Techo->Puntero_Box->Set(Vec2(1200, 400), 500.0f);
@@ -910,6 +934,16 @@ void Render()
 	Aux+=Cadena_Numero;
 	DrawText(swap_screen, 450, 460, (char *)Aux.c_str());
 
+#ifdef SPANISH
+	Aux="HiScore: ";
+#endif
+#ifdef ENGLISH
+	Aux="HiScore: ";
+#endif
+	_itoa_s(HiScore, Cadena_Numero, 10);
+	Aux+=Cadena_Numero;
+	DrawText(swap_screen, 480, 10, (char *)Aux.c_str());
+
 	// Esto no debería ir aquí, pero cuando lo hice ya faltaban pocas horas para el final del concurso xD
 
 	/// MENU DE PAUSA
@@ -955,10 +989,10 @@ void Render()
 		Aux+=Cadena_Numero;
 		DrawText(swap_screen, 200, 200, (char *)Aux.c_str());
 #ifdef SPANISH
-		DrawText(swap_screen, 280, 180, "Pulsa 'R' para reiniciar la partida.");
+		DrawText(swap_screen, 210, 180, "Pulsa 'R' para reiniciar la partida.");
 #endif
 #ifdef ENGLISH
-		DrawText(swap_screen, 280, 180, "Press 'R' to restart the game.");
+		DrawText(swap_screen, 210, 180, "Press 'R' to restart the game.");
 #endif
 	}
 
@@ -1115,6 +1149,7 @@ void main(int argc, char** argv)
 	    exit(-1);
 	}
 
+	Puntuacion = 0;
 	Inicializar(9);
 
 
