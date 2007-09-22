@@ -933,36 +933,6 @@ void Render()
 		DrawText(swap_screen, 200, 205, "Press 'ESC' to go to the menu.");
 #endif
 	}
-	// MENÚ DE BIENVENIDA
-	if(Bienvenida)
-	{
-		float Opacidad = 1.0;
-		const int val = (int)(Opacidad * 0xff);
-		set_trans_blender(0xff, 0xff, 0xff, val);
-		drawing_mode(DRAW_MODE_TRANS, 0, 0, 0);
-		drawRectangle(swap_screen, 0, 0, 640, 480, makeacol(255, 255, 255, 0), 1, makeacol(255, 255, 255, 255*Opacidad));
-//		drawRectangle(swap_screen, 640/4, 480/4, 640/2, 480/2, makeacol(0, 99, 168, 0), 1, makeacol(0, 122, 207, 255*0.8));
-		drawing_mode(DRAW_MODE_SOLID, 0, 0, 0);
-/*		DrawText(swap_screen, 280, 180-48, "BIENVENIDO");
-		DrawText(swap_screen, 175, 195, "Pulsa C para empezar a jugar.");
-		DrawText(swap_screen, 175, 205, "Pulsa ESC para salir del juego.");
-
-		DrawText(swap_screen, 175, 225, "CONTROLES:");
-		DrawText(swap_screen, 175, 233, "==========");
-
-		DrawText(swap_screen, 175, 245, "  - Izquierda/Derecha > Disparar.");
-		DrawText(swap_screen, 175, 255, "  - Abajo > Impulsarse hacia arriba.");
-		DrawText(swap_screen, 175, 265, "  - Arriba > Dejarse caer.");
-		DrawText(swap_screen, 175, 275, "  - P > Pausa.");
-		DrawText(swap_screen, 175, 285, "  - Recarga el agua aterrizando.");
-
-		DrawText(swap_screen, 175, 295, "OBJETIVO Y REGLAS:");
-		DrawText(swap_screen, 175, 303, "==================");
-
-		DrawText(swap_screen, 175, 315, "  - Evita que los caracoles suban.");
-		DrawText(swap_screen, 175, 325, "  - Si el techo baja demasiado,");
-		DrawText(swap_screen, 175, 335, "     perderas.");*/
-	}
 	// MENÚ DE MUERTO
 	if(Muerto)
 	{
@@ -996,6 +966,11 @@ void Render()
 	{
 		Puntero_Menu -> Dibujar(swap_screen);
 		Puntero_Menu -> Actualizar();
+	}
+	// MENÚ DE BIENVENIDA
+	if(Bienvenida)
+	{
+		DrawText(swap_screen, 420, 465, "Version: Beta 2 (2/9/2007)");
 	}
 
     acquire_screen();	// Bloquear la pantalla antes de dibujar
@@ -1079,33 +1054,18 @@ void Menu_Listener(string msg)
 	{
 		Salir = true;
 	}
+	else if(msg == "togglesound UP")
+	{
+		int MIDI_Vol;
+		int DIGI_Vol;
+		get_volume(&DIGI_Vol,  &MIDI_Vol);
+		if(DIGI_Vol > 0)
+			set_volume(0,0);
+		else
+			set_volume(255, 255);
+	}
 }
-/*
-int main()
-{
-  GLYPH_FACE *face;
-  GLYPH_REND *rend;
 
-  allegro_init();
-  set_color_depth(32);
-  set_gfx_mode(GFX_AUTODETECT,800,600,0,0);
-  clear_to_color(screen,makecol(255,255,255));
-  install_keyboard();
-
-  face = gk_load_face_from_file("arial.ttf",0);
-  if (!face) { allegro_message("Can't load font!"); exit(1); }
-  rend = gk_create_renderer(face,0);
-  if (!rend) { allegro_message("Can't create renderer!"); exit(1); }
-  gk_rend_set_size_pixels(rend,32,32);
-  gk_rend_set_text_color(rend,29,102,185);
-
-  gk_render_line_utf8(screen,rend,"Hello, World!",50,50);
-
-  readkey();
-  return 0;
-}
-END_OF_MAIN()
-*/
 // Función main
 void main(int argc, char** argv)
 {
@@ -1128,6 +1088,7 @@ void main(int argc, char** argv)
 	install_mouse();
 	char * p=NULL;
 	install_sound(DIGI_AUTODETECT, MIDI_AUTODETECT, p);
+	set_volume(255, 255);
 
 	// install timers
 	install_timer();

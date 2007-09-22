@@ -51,19 +51,21 @@ void Menu::Inicializa_Menu(int Menu)
 
 	if(Menu == 0)
 	{
-		Numero_Botones = 4;
+		Numero_Botones = 5;
 		Botones = new Boton_Menu[Numero_Botones];
 #ifdef SPANISH
 		Botones[0] = Boton_Menu(320, 187, 200, 38, "start", "Empezar a Jugar", this);
 		Botones[1] = Boton_Menu(320, 270, 200, 38, "controles", "Controles", this);
 		Botones[2] = Boton_Menu(320, 350, 200, 38, "opciones", "Instrucciones", this);
 		Botones[3] = Boton_Menu(320, 440, 200, 38, "exit", "Salir", this);
+		Botones[4] = Boton_Menu(55, 460, 100, 20, "togglesound", "Toggle Sound", this);
 #endif
 #ifdef ENGLISH
 		Botones[0] = Boton_Menu(320, 187, 200, 38, "start", "Start game", this);
 		Botones[1] = Boton_Menu(320, 270, 200, 38, "controles", "Controls", this);
 		Botones[2] = Boton_Menu(320, 350, 200, 38, "opciones", "Help", this);
 		Botones[3] = Boton_Menu(320, 440, 200, 38, "exit", "Exit", this);
+		Botones[4] = Boton_Menu(55, 460, 100, 20, "togglesound", "Toggle Sound", this);
 #endif
 		Numero_Textos = 0;
 	//	Textos = new Texto_Menu[Numero_Textos];
@@ -83,7 +85,12 @@ void Menu::Inicializa_Menu(int Menu)
 	{
 		Numero_Botones = 1;
 		Botones = new Boton_Menu[Numero_Botones];
+#ifdef SPANISH
 		Botones[0] = Boton_Menu(320, 440, 200, 38, "volver", "Volver", this);
+#endif
+#ifdef ENGLISH
+		Botones[0] = Boton_Menu(320, 440, 200, 38, "volver", "Back", this);
+#endif
 
 		Numero_Textos = 2;
 		Textos = new Texto_Menu[Numero_Textos];
