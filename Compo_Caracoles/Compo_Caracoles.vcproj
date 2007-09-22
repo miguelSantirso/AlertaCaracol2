@@ -38,7 +38,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="&quot;C:\Archivos de programa\Librerías Allegro\allegro42_msvc8_bin\include&quot;;&quot;C:\Archivos de programa\Microsoft Platform SDK\Include&quot;"
-				PreprocessorDefinitions="SPANISH"
+				PreprocessorDefinitions="ENGLISH"
 				RuntimeLibrary="3"
 				ObjectFile="$(IntDir)\"
 				DebugInformationFormat="4"

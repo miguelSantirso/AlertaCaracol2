@@ -51,7 +51,7 @@ void Menu::Inicializa_Menu(int Menu)
 
 	if(Menu == 0)
 	{
-		Numero_Botones = 5;
+		Numero_Botones = 6;
 		Botones = new Boton_Menu[Numero_Botones];
 #ifdef SPANISH
 		Botones[0] = Boton_Menu(320, 187, 200, 38, "start", "Empezar a Jugar", this);
@@ -59,6 +59,7 @@ void Menu::Inicializa_Menu(int Menu)
 		Botones[2] = Boton_Menu(320, 350, 200, 38, "opciones", "Instrucciones", this);
 		Botones[3] = Boton_Menu(320, 440, 200, 38, "exit", "Salir", this);
 		Botones[4] = Boton_Menu(55, 460, 100, 20, "togglesound", "Toggle Sound", this);
+		Botones[5] = Boton_Menu(585, 460, 100, 20, "credits", "Creditos", this);
 #endif
 #ifdef ENGLISH
 		Botones[0] = Boton_Menu(320, 187, 200, 38, "start", "Start game", this);
@@ -66,11 +67,9 @@ void Menu::Inicializa_Menu(int Menu)
 		Botones[2] = Boton_Menu(320, 350, 200, 38, "opciones", "Help", this);
 		Botones[3] = Boton_Menu(320, 440, 200, 38, "exit", "Exit", this);
 		Botones[4] = Boton_Menu(55, 460, 100, 20, "togglesound", "Toggle Sound", this);
+		Botones[5] = Boton_Menu(585, 460, 100, 20, "credits", "Credits", this);
 #endif
 		Numero_Textos = 0;
-	//	Textos = new Texto_Menu[Numero_Textos];
-
-	//	Textos[0] = Texto_Menu(320, 400, 550, Texto_Menu::COMPLEJO, "explain", "CONTROLES:\n   - Izquierda/Derecha: Disparar e impulsar la nave hacia los lados\n   - Abajo: Impulsar la nave hacia arriba\n   - Arriba: Descender mas rapido\n   - ESC: Salir\n   - P: Pausa\n   - R: Reiniciar Partida");
 
 		Numero_Imagenes = 1;
 		Imagenes = new Imagen_Menu *[Numero_Imagenes];
@@ -133,6 +132,34 @@ void Menu::Inicializa_Menu(int Menu)
 
 		Configuracion_Teclas = new KeyConfig_Menu(110, 150, 420, 300, this);
 	}
+	else if(Menu == 3)
+	{
+		Numero_Botones = 1;
+		Botones = new Boton_Menu[Numero_Botones];
+#ifdef SPANISH
+		Botones[0] = Boton_Menu(320, 440, 200, 38, "volver", "Volver", this);
+#endif
+#ifdef ENGLISH
+		Botones[0] = Boton_Menu(320, 440, 200, 38, "volver", "Back", this);
+#endif
+
+		Numero_Textos = 1;
+		Textos = new Texto_Menu[Numero_Textos];
+#ifdef SPANISH
+		Textos[0] = Texto_Menu(320, 220, 565, Texto_Menu::COMPLEJO, "explain", "CREDITOS:\n\n   Creado por Miguel Santirso Gonzalez (TiRSO!) en el 2007\n   http://www.redroomsoftware.com/tirsoweb/\n\n   Este juego fue creado inicialmente para una compo 48h. organizada\n   en www.stratos-ad.com\n\n\n   Creado con Allegro 4.2 y con la libreria Box2D para las fisicas.");
+#endif
+#ifdef ENGLISH
+		Textos[0] = Texto_Menu(320, 220, 565, Texto_Menu::COMPLEJO, "explain", "CREDITS:\n\n   Developed by Miguel Santirso Gonzalez (TiRSO!) in 2007\n   http://www.redroomsoftware.com/tirsoweb/\n\n   This game was originally created for a 48h compo which\n   was organised in www.stratos-ad.com\n\n\n   Created with Allegro 4.2 and with Box2D library for the physics.");
+#endif
+		Numero_Imagenes = 1;
+		Imagenes = new Imagen_Menu *[Numero_Imagenes];
+#ifdef SPANISH
+		Imagenes[0] = new Imagen_Menu(320, 240, "header", "graficos\\menus\\fondocontroles.pcx");
+#endif
+#ifdef ENGLISH
+		Imagenes[0] = new Imagen_Menu(320, 240, "header", "graficos\\menus\\fondocontroles_en.pcx");
+#endif
+	}
 }
 
 
@@ -144,6 +171,8 @@ void Menu::Listener_Botones(std::string msg)
 		Siguiente = 1;
 	else if(msg == "volver UP")
 		Siguiente = 0;
+	else if(msg == "credits UP")
+		Siguiente = 3;
 }
 
 void Menu::Dibujar(BITMAP *bmp)
