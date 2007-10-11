@@ -773,7 +773,7 @@ void Render()
 	string Aux;
     clear_to_color(swap_screen, makecol(245,245,255));
 
-	if(Imagen_Fondo!=NULL)
+	if(Imagen_Fondo!=NULL && !Debug)
 		draw_sprite(swap_screen, Imagen_Fondo, 0, 0);
 
 	// Dibujar objetos físicos
@@ -942,7 +942,7 @@ void Render()
 #endif
 	_itoa_s(HiScore, Cadena_Numero, 10);
 	Aux+=Cadena_Numero;
-	DrawText(swap_screen, 480, 10, (char *)Aux.c_str());
+	DrawText(swap_screen, 500, 5, (char *)Aux.c_str());
 
 	// Esto no debería ir aquí, pero cuando lo hice ya faltaban pocas horas para el final del concurso xD
 
