@@ -596,6 +596,9 @@ void Simulate()
 		Objeto_Caracol *Puntero_Caracol = new Objeto_Caracol(); // Crear un Objeto_Caracol
 		Caracoles.push_back(Puntero_Caracol);					// Lo almacenamos
 		Puntero_Agua->Nuevo_Cuerpo(Puntero_Caracol->Puntero_Box);
+
+		if(Puntero_Caracol->Destruir)
+			Puntero_Caracol->Puntero_Box->position.y = -50;
 	}
 }
 

@@ -47,7 +47,9 @@ Objeto_Caracol::Objeto_Caracol(void) : Destruir(false)
 	{
 		if(Caracoles[i] != NULL && Caracoles[i]->Columna == Columna && Caracoles[i]->Parte_Derecha == Parte_Derecha)
 			if(Caracoles[i]->Puntero_Box->position.y > 300)
+			{
 				Destruir = true;
+			}
 	}
 
 	// Las columnas de los extremos solo tienen una parte válida
