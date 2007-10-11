@@ -14,6 +14,7 @@ using namespace std;
 // Necesitamos obtener algunas variables globales.
 // Esto no es muy elegante, pero lo hice así por ahorrar tiempo
 extern vector<Objeto_Fisico *> Columnas;
+extern vector<Objeto_Caracol *> Caracoles;
 extern vector<Sprite_Efecto *> Sprites_Efectos;
 extern int Nivel;
 extern int Puntuacion;
@@ -39,6 +40,15 @@ Objeto_Caracol::Objeto_Caracol(void) : Destruir(false)
 	} while(Columnas[Columna]->Puntero_Box->position.y > 620);
 
 	Parte_Derecha=rand()%2;	// Sortear el lado de la columna en que aparecerá
+
+	// Comprobar que no haya ningún caracol en la misma columna (para que no salgan uno encima de otro)
+	// Este no es el mejor lugar para hacerlo, pero esto es lo que hay cuando se programa sin tiempo para pensar ;)
+	for(int i=0; i<Caracoles.size(); i++)
+	{
+		if(Caracoles[i] != NULL && Caracoles[i]->Columna == Columna && Caracoles[i]->Parte_Derecha == Parte_Derecha)
+			if(Caracoles[i]->Puntero_Box->position.y > 300)
+				Destruir = true;
+	}
 
 	// Las columnas de los extremos solo tienen una parte válida
 	if(Columna==4) Parte_Derecha = false;

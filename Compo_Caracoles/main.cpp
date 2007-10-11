@@ -832,11 +832,12 @@ void Render()
 		// Si no ha sido destruido
 		if((*i)!=NULL)
 		{
-			(*i)->Dibuja(swap_screen);	// Lo dibujamos
 			if((*i)->Destruir)	// Si el objeto se ha automarcado para ser destruido
 			{
 				Destruye_Caracol(i); // Eliminamos el objeto y ponemos a NULL este elemento del vector
 			}
+			else
+				(*i)->Dibuja(swap_screen);	// Lo dibujamos
 		}
 	}
 
@@ -1004,7 +1005,7 @@ void Render()
 	// MENÚ DE BIENVENIDA
 	if(Bienvenida)
 	{
-		DrawText(swap_screen, 420, 465, "Version: Beta 2 (2/9/2007)");
+		DrawText(swap_screen, 155, 470, "Version: Release Candidate 1 (11/10/2007)");
 	}
 
     acquire_screen();	// Bloquear la pantalla antes de dibujar
