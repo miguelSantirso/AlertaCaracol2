@@ -14,6 +14,7 @@ Objeto_Paracaidas::Objeto_Paracaidas(void)
 {
 	Inicializa("graficos\\paracaidas.pcx");
 	Puntero_Box->mass=1000.0f;
+	Puntero_Box->friction = 0;
 	Puntero_Box->position.y-=25;
 }
 
