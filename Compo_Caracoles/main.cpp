@@ -34,6 +34,7 @@
 #include "Efecto_Agua.h"
 #include "Menu.h"
 #include "KeyConfig_Menu.h"
+#include "Music_Looper.h"
 
 using namespace std;
 
@@ -61,6 +62,8 @@ bool Pausa = false;			// Indica si el juego está pausado
 bool Bienvenida = true;		// Indica si se está en la pantalla de bienvenida
 bool Muerto = false;		// Indica si se está en la pantalla de muerto
 bool Salir = false;			// Indica que se debe salir del juego
+
+int Mensaje_Audio = -1;		// Sirve para activar o desactivar el mensaje que avisa cuando se activa o desactiva el sonido desde el menú.
 
 bool Debug = false;			// Indica si se está en modo debug (se dibujan los bodies y los joints)
 
@@ -93,6 +96,9 @@ SAMPLE *Disparo = NULL;
 SAMPLE *Explosion = NULL;
 SAMPLE *Cargando = NULL;
 SAMPLE *Caida = NULL;
+
+Music_Looper *Puntero_Musica = NULL;
+bool Musica = true;	// Indica si la música está activa o no.
 
 bool Propulsor_Activo = false;	// Indica si el propulsor está activo
 bool Disparo_Activo = false;	// Indica si el disparo está activo
@@ -384,6 +390,8 @@ void Iniciar_Partida()
 
 	 Lee_Configuracion_Teclado();
 
+	 Puntero_Musica = new Music_Looper();
+
 	 if(Bienvenida)
 		Puntero_Menu = new Menu();
 }
@@ -460,6 +468,12 @@ void Inicializar(int index)
 	destroy_sample(Explosion);
 	destroy_sample(Cargando);
 	destroy_sample(Caida);
+
+	if(Puntero_Musica != NULL)
+	{
+		delete Puntero_Musica;
+		Puntero_Musica = NULL;
+	}
 
 	// Ponemos a NULL todos los punteros a sonidos para evitar problemas
     Splash_Grande = NULL;
@@ -598,7 +612,7 @@ void Simulate()
 		Puntero_Agua->Nuevo_Cuerpo(Puntero_Caracol->Puntero_Box);
 
 		if(Puntero_Caracol->Destruir)
-			Puntero_Caracol->Puntero_Box->position.y = -50;
+			Puntero_Caracol->Puntero_Box->position.y = 600; // Lo movemos para que no moleste hasta que se destruya
 	}
 }
 
@@ -847,6 +861,9 @@ void Render()
 	if(Puntero_Agua!=NULL)
 		Puntero_Agua->Dibuja(swap_screen);
 
+	if(Puntero_Musica != NULL)
+		Puntero_Musica->Play((Musica ? 255 : 0));
+
 	// Por un problema con las estructuras de almacenamiento STL, tengo que vaciar el vector 
 	// entero cada cierto tiempo 
 	if(Disparos.size()>100)
@@ -1009,6 +1026,29 @@ void Render()
 	if(Bienvenida)
 	{
 		DrawText(swap_screen, 155, 470, "Version: Release Candidate 1 (11/10/2007)");
+
+		if(Mensaje_Audio >= 0)
+		{
+			Mensaje_Audio--;
+
+			int MIDI_Vol;
+			int DIGI_Vol;
+			get_volume(&DIGI_Vol,  &MIDI_Vol);
+			if(MIDI_Vol > 0)
+#ifdef SPANISH
+				DrawText(swap_screen, 5, 440-30+Mensaje_Audio/4, "Audio activado");
+#endif
+#ifdef ENGLISH
+				DrawText(swap_screen, 5, 440-30+Mensaje_Audio/4, "Audio ON");
+#endif
+			else
+#ifdef SPANISH
+				DrawText(swap_screen, 5, 440-30+Mensaje_Audio/4, "Audio desactivado");
+#endif
+#ifdef ENGLISH
+				DrawText(swap_screen, 5, 440-30+Mensaje_Audio/4, "Audio OFF");
+#endif
+		}
 	}
 
     acquire_screen();	// Bloquear la pantalla antes de dibujar
@@ -1097,10 +1137,16 @@ void Menu_Listener(string msg)
 		int MIDI_Vol;
 		int DIGI_Vol;
 		get_volume(&DIGI_Vol,  &MIDI_Vol);
-		if(DIGI_Vol > 0)
-			set_volume(0,0);
+		if(MIDI_Vol > 0)
+			set_volume(1,0);
 		else
 			set_volume(255, 255);
+
+		Mensaje_Audio = 120;
+	}
+	else if(msg == "togglemusic UP")
+	{
+		Musica = !Musica;
 	}
 }
 

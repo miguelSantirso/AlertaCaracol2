@@ -51,15 +51,16 @@ void Menu::Inicializa_Menu(int Menu)
 
 	if(Menu == 0)
 	{
-		Numero_Botones = 6;
+		Numero_Botones = 7;
 		Botones = new Boton_Menu[Numero_Botones];
 #ifdef SPANISH
 		Botones[0] = Boton_Menu(320, 187, 200, 38, "start", "Empezar a Jugar", this);
 		Botones[1] = Boton_Menu(320, 270, 200, 38, "controles", "Controles", this);
 		Botones[2] = Boton_Menu(320, 350, 200, 38, "opciones", "Instrucciones", this);
 		Botones[3] = Boton_Menu(320, 440, 200, 38, "exit", "Salir", this);
-		Botones[4] = Boton_Menu(55, 460, 100, 20, "togglesound", "Toggle Sound", this);
-		Botones[5] = Boton_Menu(585, 460, 100, 20, "credits", "Creditos", this);
+		Botones[4] = Boton_Menu(55, 460, 100, 20, "togglesound", "Sonido", this);
+		Botones[5] = Boton_Menu(55, 420, 100, 20, "togglemusic", "Musica", this);
+		Botones[6] = Boton_Menu(585, 460, 100, 20, "credits", "Creditos", this);
 #endif
 #ifdef ENGLISH
 		Botones[0] = Boton_Menu(320, 187, 200, 38, "start", "Start game", this);
@@ -67,7 +68,8 @@ void Menu::Inicializa_Menu(int Menu)
 		Botones[2] = Boton_Menu(320, 350, 200, 38, "opciones", "Help", this);
 		Botones[3] = Boton_Menu(320, 440, 200, 38, "exit", "Exit", this);
 		Botones[4] = Boton_Menu(55, 460, 100, 20, "togglesound", "Toggle Sound", this);
-		Botones[5] = Boton_Menu(585, 460, 100, 20, "credits", "Credits", this);
+		Botones[5] = Boton_Menu(55, 420, 100, 20, "togglemusic", "Toggle Music", this);
+		Botones[6] = Boton_Menu(585, 460, 100, 20, "credits", "Credits", this);
 #endif
 		Numero_Textos = 0;
 

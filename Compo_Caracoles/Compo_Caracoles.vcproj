@@ -38,7 +38,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="&quot;C:\Archivos de programa\Librerías Allegro\allegro42_msvc8_bin\include&quot;;&quot;C:\Archivos de programa\Microsoft Platform SDK\Include&quot;"
-				PreprocessorDefinitions="ENGLISH"
+				PreprocessorDefinitions="SPANISH"
 				RuntimeLibrary="3"
 				ObjectFile="$(IntDir)\"
 				DebugInformationFormat="4"
@@ -270,6 +270,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Music_Looper.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Objeto_Caracol.cpp"
 				>
 			</File>
@@ -345,6 +349,10 @@
 			</File>
 			<File
 				RelativePath=".\Menu.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Music_Looper.h"
 				>
 			</File>
 			<File
