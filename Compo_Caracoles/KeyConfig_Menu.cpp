@@ -7,6 +7,7 @@
 using namespace std;
 
 extern void Aborta_Con_Error(string msg);
+extern void Lee_Configuracion_Teclado();
 
 KeyConfig_Menu::KeyConfig_Menu(int _x, int _y, int _Ancho, int _Alto, Menu *_Puntero_Menu) : x(_x),
 		y(_y), Ancho(_Ancho), Alto(_Alto), Puntero_Menu(Puntero_Menu), KeyBoxes(NULL)
@@ -51,20 +52,8 @@ void KeyConfig_Menu::Lee_Configuracion()
 
 	if(!Fichero.is_open())
 	{
-		/*
-		Key_Struct Tecla;
-		Tecla.Nombre = "up";
-		Tecla.Id_Tecla = 51;
-		Config_Teclas.push_back(Tecla);
-		Tecla.Nombre = "down";
-		Config_Teclas.push_back(Tecla);
-		Tecla.Nombre = "left";
-		Config_Teclas.push_back(Tecla);
-		Tecla.Nombre = "right";
-		Config_Teclas.push_back(Tecla);
-
-		Escribe_Configuracion();*/
-		Aborta_Con_Error("ERROR:\nError de ejecucion en la funcion Lee_Configuracion() de KeyConfig_Menu.cpp.\n - Error al cargar el fichero de configuracion de teclado.");
+		Lee_Configuracion_Teclado();
+		Lee_Configuracion();
 		return;
 	}
 

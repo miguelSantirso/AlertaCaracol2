@@ -388,7 +388,7 @@ void Iniciar_Partida()
 	 Cargando = load_wav("sonidos\\Cargando.wav");
 	 Caida = load_wav("sonidos\\Caida.wav");
 
-	 Lee_Configuracion_Teclado();
+	 //Lee_Configuracion_Teclado();
 
 	 Puntero_Musica = new Music_Looper();
 
